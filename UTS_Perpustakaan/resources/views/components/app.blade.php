@@ -59,6 +59,10 @@
                             </svg>
                             Peminjaman
                         </a>
+                        <a href="{{ route('penjaga.index') }}" class="flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('penjaga.*') ? 'bg-[#572DFF] text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                            <i class="ph ph-users w-5 mr-3 "></i>
+                            Penjaga
+                        </a>
                     </div>
                 </div>
             
