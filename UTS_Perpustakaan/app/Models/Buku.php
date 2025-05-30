@@ -17,11 +17,16 @@ class Buku extends Model
         'penulis',
         'penerbit',
         'tahun_terbit',
-        'jumlah_tersedia'
+        'jumlah_tersedia',
+        'catergory_id'
     ];
 
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'id_buku');
+    }
+    public function catergories()
+    {
+        return $this->belongsTo(Catergory::class, 'catergory_id');
     }
 }

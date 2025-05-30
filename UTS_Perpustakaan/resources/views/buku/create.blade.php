@@ -52,6 +52,19 @@
                             <input type="text" name="penulis" id="penulis" value="{{ old('penulis') }}" class="shadow-sm focus:ring-[#572DFF] focus:border-[#572DFF] block w-full sm:text-sm border-gray-300 rounded-md p-3" required>
                         </div>
                     </div>
+                    <div class="sm:col-span-3">
+                        <label for="category_id" class="block text-sm font-medium text-gray-700">Kategori</label>
+                        <div class="mt-1">
+                            <select id="catergory_id" name="catergory_id" class="shadow-sm focus:ring-[#572DFF] focus:border-[#572DFF] block w-full sm:text-sm border-gray-300 rounded-md p-3">
+                                <option value="">Pilih Kategori</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="sm:col-span-3">
                         <label for="penerbit" class="block text-sm font-medium text-gray-700">Penerbit</label>

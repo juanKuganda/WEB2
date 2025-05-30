@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\CatergoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,11 @@ Route::middleware('auth')->group(function(){
   Route::put('buku/{buku}', [BukuController::class, 'update'])->name('buku.update');
   Route::delete('buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
   
+  // Category
+  Route::get('category', [CatergoryController::class, 'index'])->name('category.index');
+  Route::get('category/create', [CatergoryController::class, 'create'])->name('category.create');
+  Route::post('category', [CatergoryController::class, 'store'])->name('category.store');
+  Route::delete('category/{category}', [CatergoryController::class, 'destroy'])->name('category.destroy');
   // Peminjaman
   Route::get('peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
   Route::get('peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');

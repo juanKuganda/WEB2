@@ -49,6 +49,10 @@
                             </svg>
                             Buku
                         </a>
+                        <a href="{{ route('category.index') }}" class="flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('category.*') ? 'bg-[#572DFF] text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
+                            <i class="ph ph-list-dashes w-5 mr-3 "></i>
+                            Category
+                        </a>
                         <a href="{{ route('peminjaman.index') }}" class="flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('peminjaman.*') ? 'bg-[#572DFF] text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />

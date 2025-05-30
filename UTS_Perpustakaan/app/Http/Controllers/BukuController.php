@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Catergory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -10,7 +11,7 @@ class BukuController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Buku::query();
+        $query = Buku::with('catergories');
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -40,7 +41,8 @@ class BukuController extends Controller
 
     public function create()
     {
-        return view('buku.create');
+        $categories = Catergory::orderBy('name')->get();
+        return view('buku.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -54,6 +56,7 @@ class BukuController extends Controller
             'penerbit' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|min:1800|max:' . date('Y'),
             'jumlah_tersedia' => 'required|integer|min:0',
+            'catergory_id' => 'required|exists:catergories,id'
         ]);
 
         Buku::create($validated);

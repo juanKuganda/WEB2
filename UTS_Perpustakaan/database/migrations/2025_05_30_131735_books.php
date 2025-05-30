@@ -12,6 +12,8 @@ return new class extends Migration {
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
+            $table->unsignedBigInteger('catergory_id')->nullable();
+            $table->foreign('catergory_id')->references('id')->on('catergories')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('tahun_terbit');
             $table->integer('jumlah_tersedia');
             $table->timestamps();
