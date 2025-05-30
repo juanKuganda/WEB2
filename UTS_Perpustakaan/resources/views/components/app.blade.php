@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Perpustakaan</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
     @vite('resources/css/app.css')
     <style>
         body {
@@ -52,13 +57,37 @@
                         </a>
                     </div>
                 </div>
+            
             </div>
         </div>
         
         <!-- Main content -->
         <div class="flex flex-col flex-1 overflow-hidden">
             <!-- Top navbar -->
-            <div class="flex items-center justify-between h-16 px-4 bg-white border-b border-gray-200">
+            <div class="flex items-center justify-between h-16 px-4 bg-white border-b border-gray-200" x-data="{ open: false }">
+                <div class="ml-auto relative" x-data="{ profileOpen: false }">
+                    <button  @click="profileOpen = !profileOpen"
+                class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 group border border-neutral-300 cursor-pointer">
+                    <i class="ph ph-user-circle block text-black text-2xl"></i>
+                    <span class="text-sm font-medium">{{ Auth::user()->name }}</span>
+                </button>
+        
+                <div x-show="profileOpen" 
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 border">
+                    <a href="{{ route('profile.index') }}" 
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Profile Settings
+                    </a>
+                    <form method="POST" action="{{ route('auth.logout') }}">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" 
+                                class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Sign Out
+                        </button>
+                    </form>
+                </div>
+            </div>
                 <!-- Mobile menu button -->
                 <button type="button" class="md:hidden text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#572DFF]">
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,25 +95,12 @@
                     </svg>
                 </button>
                 
-                <div class="flex-1 px-4 flex justify-center lg:justify-end">
-                    <div class="max-w-lg w-full lg:max-w-xs">
-                        <label for="search" class="sr-only">Search</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[#572DFF] focus:border-[#572DFF] sm:text-sm" placeholder="Cari" type="search">
-                        </div>
-                    </div>
-                </div>
                 
-              
+                
             </div>
             
             <!-- Main content area -->
-            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50 overflow-x-hidden">
                 <!-- Flash Messages -->
                 @include('components.flash-message')
                 

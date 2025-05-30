@@ -67,10 +67,16 @@
                         </div>
                     </div>
 
-                    <div class="sm:col-span-6">
+                    <div class="sm:col-span-3">
                         <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
                         <div class="mt-1">
                             <textarea name="alamat" id="alamat" rows="3" class="shadow-sm focus:ring-[#572DFF] focus:border-[#572DFF] block w-full sm:text-sm border-gray-300 rounded-md p-3">{{ old('alamat') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-3">
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <div class="mt-1">
+                            <input type="password" name="password" id="password" class="shadow-sm focus:ring-[#572DFF] focus:border-[#572DFF] block w-full sm:text-sm border-gray-300 rounded-md p-3">
                         </div>
                     </div>
                 </div>

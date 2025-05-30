@@ -5,6 +5,7 @@
     <h1 class="text-2xl font-semibold text-gray-900 mb-6">Dashboard</h1>
     
     <!-- Stats cards -->
+    @can('show')
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Total Anggota -->
         <div class="bg-white overflow-hidden shadow rounded-lg">
@@ -102,6 +103,7 @@
             </div>
         </div>
     </div>
+    @endcan
     
     <!-- Recent Peminjaman -->
     <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-8">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BukuController extends Controller
 {
@@ -44,6 +45,9 @@ class BukuController extends Controller
 
     public function store(Request $request)
     {
+        if (!Gate::allows('store')) {
+            abort(403, 'Unauthorized action.');
+        }
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
@@ -73,9 +77,13 @@ class BukuController extends Controller
     {
         return view('buku.edit', compact('buku'));
     }
-
+    
     public function update(Request $request, Buku $buku)
     {
+
+        if (!Gate::allows('edit')) {
+            abort(403, 'Unauthorized action.');
+        }
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
@@ -92,6 +100,9 @@ class BukuController extends Controller
 
     public function destroy(Buku $buku)
     {
+        if (!Gate::allows('destroy')) {
+            abort(403, 'Unauthorized action.');
+        }
         $activePeminjaman = $buku->peminjaman()
             ->where('status_peminjaman', 'dipinjam')
             ->count();
